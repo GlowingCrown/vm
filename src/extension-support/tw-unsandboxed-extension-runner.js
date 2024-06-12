@@ -33,6 +33,7 @@ const setupUnsandboxedExtensionAPI = vm => new Promise(resolve => {
     Scratch.extensions = {
         unsandboxed: true,
         isPenguinMod: true,
+        isGlowingCrown: true,
         register
     };
     Scratch.vm = vm;
