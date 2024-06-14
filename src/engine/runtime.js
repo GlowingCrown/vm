@@ -1877,6 +1877,7 @@ class Runtime extends EventEmitter {
             let fieldName;
             let variableID;
             let variableName;
+            let variableType;
             if (argInfo.menu) {
                 const menuInfo = context.categoryInfo.menuInfo[argInfo.menu];
                 if (menuInfo.acceptReporters || menuInfo.isTypeable) {
@@ -1901,6 +1902,9 @@ class Runtime extends EventEmitter {
                     valueName = null;
                     shadowType = null;
                     fieldName = placeholder;
+                    variableType = menuInfo.variableType === 'scalar' 
+                        ? Variable.SCALAR_TYPE 
+                        : menuInfo.variableType
                     const defaultVar = argInfo.defaultValue ?? [];
                     variableID = defaultVar[0];
                     variableName = defaultVar[1];
@@ -1943,7 +1947,7 @@ class Runtime extends EventEmitter {
 
             if (variableID) {
                 // eslint-disable-next-line max-len
-                context.inputList.push(`<field name="${fieldName}" id="${variableID}" variableType="${argInfo.variableType}">${variableName}</field>`);
+                context.inputList.push(`<field name="${fieldName}" id="${variableID}" variableType="${variableType}">${variableName}</field>`);
             }
 
             if (shadowType) {
